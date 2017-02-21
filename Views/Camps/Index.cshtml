@@ -1,0 +1,13 @@
+﻿
+@model IEnumerable<WebAppCore.Entities.Camp>
+
+@{
+    ViewBag.Title = "Camps Page";
+    Layout = "_Layout";
+}
+
+<h2>title</h2>
+
+@foreach (var item in Model) {
+        @item.Location.Address1
+}
