@@ -72,11 +72,24 @@ namespace WebAppCore.Controllers.Api
             return BadRequest();
         }
 
-        [HttpPut]
-        public IActionResult Put([FromBody] Camp model)
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Camp model)
         {
             try
             {
+                var oldCamp = _repo.GetCamp(id);
+                if (oldCamp == null) return NotFound($"Not found with {(Camp) null}");
+
+                oldCamp.Name = model.Name ?? oldCamp.Name;
+                oldCamp.Description = model.Description ?? oldCamp.Description;
+                oldCamp.Length = model.Length > 0 ? model.Length : oldCamp.Length;
+                oldCamp.Location = model.Location ?? oldCamp.Location;
+                oldCamp.EventDate = model.EventDate ?? oldCamp.EventDate;
+                if (_repo.SaveAll())
+                {
+                    return Ok(oldCamp);
+                }
+
                 return Ok();
             }
             catch (Exception)
