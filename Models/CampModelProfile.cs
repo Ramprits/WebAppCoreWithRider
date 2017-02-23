@@ -12,7 +12,7 @@ namespace WebAppCore.Models
                 .ForMember(c => c.StartDate,
                     opt => opt.MapFrom(e => e.EventDate))
                 .ForMember(c => c.EndDate,
-                    opt => opt.MapFrom(e => e.EventDate));
+                    opt => opt.MapFrom(e => e.EventDate)).ReverseMap();
         }
     }
 }

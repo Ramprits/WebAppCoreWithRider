@@ -1,12 +1,39 @@
-﻿@model IEnumerable<WebAppCore.Entities.Camp>
+﻿@model IEnumerable <WebAppCore.Models.CampModels.CampModel>
 
 @{
     ViewBag.Title = "Camps Page";
     Layout = "_Layout";
 }
 
-<h2>title</h2>
+<div class="well">@ViewBag.Title</div>
 
-@foreach (var item in Model) {
-        @item.Location.Address1
-}
+<table class="table table-bordered table-responsive">
+    <thead class="bg-primary">
+    <tr class="left">
+        <td>Moniker</td>
+        <td>Name</td>
+        <td>Start Date</td>
+        <td>End Date</td>
+        <td>Length</td>
+        <td>Description</td>
+        <td>Action</td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>@item.Moniker</td>
+            <td>@item.Name</td>
+            <td>@item.StartDate</td>
+            <td>@item.EndDate</td>
+            <td>@item.Length</td>
+            <td>@item.Description</td>
+            <td>
+                <input value="Edit"
+                       class="btn-warning btn btn-sm"
+                       type="button"/>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
